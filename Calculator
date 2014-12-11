@@ -1,0 +1,54 @@
+//Factors for calculating birthyear
+var age = prompt('How old are you?');
+var birthMonth = prompt('What month were you born in?');
+var birthDay = prompt('What day were you born on?');
+
+//Gets current date
+var date = new Date();
+var currentTime = date.getTime();
+var currentDay = date.getDay();
+var currentMonth = date.getMonth();
+var currentYear = date.getFullYear();
+
+//birthMonth is subtracted by 1 due to the function .getMonth counting from 0
+birthMonth--;
+
+//Puts months in an unsorted array
+var season = [0, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var birthSeason;
+
+//Determines birth season **these seasons are based off of the northern hemisphere**
+if (birthMonth == season[0] || birthMonth == season[1] || birthMonth == season[2]) {
+    birthSeason = 'winter';
+} else if (birthMonth == season[3] || birthMonth == season[4] || birthMonth == season[5]) {
+    birthSeason = 'spring';
+} else if (birthMonth == season[6] || birthMonth == season[7] || birthMonth == season[8]) {
+    birthSeason = 'summer';
+} else {
+    birthSeason = 'autumn';
+}
+
+//Calculates birthyear
+var birthYear = currentYear - age;
+
+var birthDate = new Date(birthYear, birthMonth, birthDay);
+
+//Calculates the precise age from birth
+var ageToMillisecs = currentTime - birthDate.getTime();
+var ageToSeconds = Math.round(ageToMillisecs / 1000);
+var ageToMinutes = Math.round(ageToSeconds / 60);
+var ageToHours = Math.round(ageToMinutes / 60);
+var ageToDays = Math.round(ageToHours / 24);
+
+//Setups the alert message
+var displayMessage = 'You were born in the ' + birthSeason + ' of ' + birthYear + '\nYou are ' + ageToDays + ' days old.';
+
+//Determines birth year
+if (birthMonth < currentMonth) {
+    alert(displayMessage);
+} else if (birthMonth == currentMonth && birthDay <= currentDay) {
+    alert(displayMessage);
+} else {
+    birthYear--;
+    alert('You were born in the ' + birthSeason + ' of ' + birthYear + '\nYou are ' + ageToDays + ' days old.');
+}
