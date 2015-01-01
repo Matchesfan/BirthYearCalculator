@@ -1,7 +1,7 @@
 //Factors for calculating birthyear
 var age = prompt('How old are you?');
-var birthMonth = prompt('What month were you born in?');
-var birthDay = prompt('What day were you born on?');
+var birthMonth = prompt('What month were you born in? Please enter the number');
+var birthDay = prompt('What day were you born on? Please enter the number');
 
 //Gets current date
 var date = new Date();
